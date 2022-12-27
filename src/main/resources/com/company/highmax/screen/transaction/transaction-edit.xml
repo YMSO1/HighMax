@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://transactionEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="transactionDc"
+                  class="com.company.highmax.entity.Transaction">
+            <fetchPlan extends="_base">
+                <property name="fromAcc" fetchPlan="_instance_name"/>
+                <property name="toAcc" fetchPlan="_instance_name"/>
+                <property name="typeList" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="typeListDc" property="typeList"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="transactionDc">
+            <column width="350px">
+                <entityPicker id="fromAccField" property="fromAcc">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="toAccField" property="toAcc">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <textField id="transferAmountField" property="transferAmount"/>
+            </column>
+        </form>
+        <groupBox id="typeListBox" caption="msg://com.company.highmax.entity/Transaction.typeList">
+            <table id="typeListTable" dataContainer="typeListDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="typeListTable.add"/>
+                    <button action="typeListTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
