@@ -47,15 +47,15 @@ public class ClientEdit extends StandardEditor<Client> {
     @Autowired
     private MessageBundle messageBundle;
 
-    @Autowired
-    private ComboBox<String> timeZoneField;
+//    @Autowired
+//    private ComboBox<String> timeZoneField;
 
     private boolean isNewEntity;
 
-    @Subscribe
-    public void onInit(InitEvent event) {
-        timeZoneField.setOptionsList(Arrays.asList(TimeZone.getAvailableIDs()));
-    }
+//    @Subscribe
+//    public void onInit(InitEvent event) {
+//        timeZoneField.setOptionsList(Arrays.asList(TimeZone.getAvailableIDs()));
+//    }
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<User> event) {

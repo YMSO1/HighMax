@@ -47,6 +47,7 @@
                 <column id="fromAcc"/>
                 <column id="toAcc"/>
                 <column id="transferAmount"/>
+                <column id="createdDate"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
